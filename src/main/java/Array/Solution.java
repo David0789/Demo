@@ -61,14 +61,6 @@ public class Solution {
      * @return
      */
     public boolean containsDuplicate(int[] nums) {
-/*        Set<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            if (set.contains(num)) {
-                return true;
-            }
-            set.add(num);
-        }
-        return false;*/
         if (nums.length < 2) return false;
 
         int max = nums[0];
@@ -100,21 +92,6 @@ public class Solution {
             res = res ^ num;
         }
         return res;
-
-/*        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (set.contains(nums[i])) continue;
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] == nums[i]) {
-                    set.add(nums[i]);
-                    break;
-                }
-                if (j == nums.length -1) {
-                    return nums[i];
-                }
-            }
-        }
-        return nums[nums.length-1];*/
     }
 
     /**
@@ -197,25 +174,6 @@ public class Solution {
         while (j < nums.length) {
             nums[j++] = 0;
         }
-/*        int num = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                continue;
-            }
-
-            int tmp;
-            for (int j = i; j < nums.length - 1 - num; j++) {
-                int k = 1;
-                while (nums[j + k] == 0 && j + k < nums.length - 1) {
-                    k++;
-                }
-                tmp = nums[j];
-                nums[j] = nums[j + k];
-                nums[j + k] = tmp;
-                j += k - 1;
-            }
-            num++;
-        }*/
     }
 
     /**
@@ -238,38 +196,6 @@ public class Solution {
             }
         }
         return new int[2];
-
-/*        for (int i = 0; i < nums.length; i++) {
-            for (int i1 = i + 1; i1 < nums.length; i1++) {
-                if (nums[i] + nums[i1] == target) {
-                    return new int[]{i,i1};
-                }
-            }
-
-        }
-        return new int[2];*/
-/*        Arrays.sort(nums);
-
-        for (int i = 0; i < nums.length; i++) {
-            // 中分法
-            int k = (nums.length - i) / 2;
-            if (nums[i] + nums[k] < target) {
-                for (int j = k + 1; j < nums.length; j++) {
-                    if (nums[i] + nums[j] == target) {
-                        return new int[]{i, j};
-                    }
-                }
-            } else if (nums[i] + nums[k] > target) {
-                for (int j = k - 1; j > i; j--) {
-                    if (nums[i] + nums[j] == target) {
-                        return new int[]{i, j};
-                    }
-                }
-            } else {
-                return new int[]{i, k};
-            }
-        }
-        return new int[2];*/
     }
 
     /**
