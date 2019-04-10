@@ -31,7 +31,13 @@ public class Solution {
      * @return
      */
     public int maxProfit(int[] prices) {
-        return 0;
+        int max = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] - prices[i - 1] > 0) {
+                max += prices[i] - prices[i - 1];
+            }
+        }
+        return max;
     }
 
     /**
@@ -228,23 +234,42 @@ public class Solution {
 
     /**
      * 旋转图像
+     *
      * @param matrix
      */
     public void rotate(int[][] matrix) {
+        int tmp;
+        // 调换所有对角元素
+        for (int i = 0; i < matrix.length; i++) {
+            for (int k = 0; k < matrix[i].length - i; k++) {
+                tmp = matrix[i][k];
+                matrix[i][k] = matrix[matrix.length - 1 - k][matrix.length - 1 - i];
+                matrix[matrix.length - 1 - k][matrix.length - 1 - i] = tmp;
+            }
+        }
 
+        // 所有列元素调换
+        for (int i = 0; i < matrix.length / 2; i++) {
+            for (int k = 0; k < matrix.length; k++) {
+                tmp = matrix[i][k];
+                matrix[i][k] = matrix[matrix.length - 1 - i][k];
+                matrix[matrix.length - 1 - i][k] = tmp;
+            }
+        }
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        char[][] c = {{'8','3','.','.','7','.','.','.','.'}
-                                ,{'6','.','.','1','9','5','.','.','.'}
-                                ,{'.','9','8','.','.','.','.','6','.'}
-                                ,{'8','.','.','.','6','.','.','.','3'}
-                                ,{'4','.','.','8','.','3','.','.','1'}
-                                ,{'7','.','.','.','2','.','.','.','6'}
-                                ,{'.','6','.','.','.','.','2','8','.'}
-                                ,{'.','.','.','4','1','9','.','.','5'}
-                                ,{'.','.','.','.','8','.','.','7','9'}};
-        solution.isValidSudoku(c);
+//        char[][] c = {{'8','3','.','.','7','.','.','.','.'}
+//                                ,{'6','.','.','1','9','5','.','.','.'}
+//                                ,{'.','9','8','.','.','.','.','6','.'}
+//                                ,{'8','.','.','.','6','.','.','.','3'}
+//                                ,{'4','.','.','8','.','3','.','.','1'}
+//                                ,{'7','.','.','.','2','.','.','.','6'}
+//                                ,{'.','6','.','.','.','.','2','8','.'}
+//                                ,{'.','.','.','4','1','9','.','.','5'}
+//                                ,{'.','.','.','.','8','.','.','7','9'}};
+//        solution.isValidSudoku(c);
+        System.out.println(solution.maxProfit(new int[]{1, 2, 7}));
     }
 }
